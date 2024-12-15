@@ -3,8 +3,9 @@ package com.mycompany.puentethreadsafe;
 import java.util.Random;
 
 public class Puentethreadsafe {
+    
     public static void main(String[] args) {
-        // Constantes
+        
         final int MINIMO_TIEMPO_LLEGADA = 1;
         final int MAXIMO_TIEMPO_LLEGADA = 30;
         final int MINIMO_TIEMPO_PASO = 10;
@@ -12,18 +13,16 @@ public class Puentethreadsafe {
         final int MINIMO_PESO_PERSONA = 40;
         final int MAXIMO_PESO_PERSONA = 120;
 
-        // Variables
-        final Puente puente = new Puente();
+        final PuenteThreadSafe puente = new PuenteThreadSafe();
         String idPersona = "";
         int tiempoLlegada;
         int tiempoPaso;
         int pesoPersona;
 
         // Bucle infinito creando personas para cruzar el puente
-        int numeroPersona = 0;
+        int numeroPersona = 1;  // Empezamos con el primer número
         while (true) {
             // Crear una persona
-            numeroPersona++;
             idPersona = "Persona " + numeroPersona;
             tiempoLlegada = numeroAleatorio(MINIMO_TIEMPO_LLEGADA, MAXIMO_TIEMPO_LLEGADA);
             tiempoPaso = numeroAleatorio(MINIMO_TIEMPO_PASO, MAXIMO_TIEMPO_PASO);
@@ -38,13 +37,16 @@ public class Puentethreadsafe {
             
             // Esperar a que llegue
             try {
-                Thread.sleep(tiempoLlegada * 1000);
+                Thread.sleep(tiempoLlegada * 100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            
+
             // La persona cruza
             hiloPersona.start();
+
+            // Incrementar el número de persona para la siguiente
+            numeroPersona++;
         }
     }
 
