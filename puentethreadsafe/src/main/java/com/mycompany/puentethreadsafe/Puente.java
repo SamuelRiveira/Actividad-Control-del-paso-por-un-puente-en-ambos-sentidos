@@ -49,7 +49,6 @@ public class Puente {
                 persona.getIdPersona(), sentidoPersona, numeroPersonas, pesoPersonas);
     }
 
-
     // Método de salida del puente
     public synchronized void salir(Persona persona) {
         String sentidoPersona = persona.getSentido();

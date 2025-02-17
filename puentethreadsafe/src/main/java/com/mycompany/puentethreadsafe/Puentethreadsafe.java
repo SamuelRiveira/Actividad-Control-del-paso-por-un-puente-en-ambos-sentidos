@@ -3,9 +3,9 @@ package com.mycompany.puentethreadsafe;
 import java.util.Random;
 
 public class Puentethreadsafe {
-    
+
     public static void main(String[] args) {
-        
+
         final int MINIMO_TIEMPO_LLEGADA = 1;
         final int MAXIMO_TIEMPO_LLEGADA = 30;
         final int MINIMO_TIEMPO_PASO = 10;
@@ -13,7 +13,7 @@ public class Puentethreadsafe {
         final int MINIMO_PESO_PERSONA = 40;
         final int MAXIMO_PESO_PERSONA = 120;
 
-        final PuenteThreadSafe puente = new PuenteThreadSafe();
+        final Puente puente = new Puente();
         String idPersona = "";
         int tiempoLlegada;
         int tiempoPaso;
@@ -34,7 +34,7 @@ public class Puentethreadsafe {
                     idPersona, tiempoLlegada, pesoPersona, sentido, tiempoPaso);
 
             Thread hiloPersona = new Thread(new Persona(idPersona, tiempoPaso, pesoPersona, sentido, puente));
-            
+
             // Esperar a que llegue
             try {
                 Thread.sleep(tiempoLlegada * 100);
